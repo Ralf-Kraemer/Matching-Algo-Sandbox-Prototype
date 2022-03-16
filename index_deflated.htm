@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<!-- saved from url=(0094)https://ralfkraemer-wixsite-com.filesusr.com/html/c9d2fe_c69320b4d09e5a98adf9ea5445ae76b8.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Matching Algo Sandbox</title>
+<script type="text/javascript" id="jq" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+
+<style>
+@CHARSET "ISO-8859-1";
+
+#a_wrapper0 {
+	border-style: inset;
+	border-width: 3px;
+	border-radius: 3px;
+	border-color: orange;
+	margin-top: 6px;
+	overflow: hidden;
+	font-family: sans-serif;
+}
+
+#a_wrapper1 {
+	padding: 6px;
+	overflow: hidden;
+	float: left;
+}
+
+#a_wrapper2 {
+	padding: 6px;
+	overflow: hidden;
+	float: left;
+}
+
+#a_wrapper3 {
+	padding: 6px;
+	overflow: hidden;
+	float: left;
+}
+
+#b_wrapper0 {
+	border-style: inset;
+	border-width: 3px;
+	border-radius: 3px;
+	border-color: purple;
+	margin-top: 6px;
+	overflow: hidden;
+	font-family: sans-serif;
+}
+
+#b_wrapper1 {
+	padding: 6px;
+	overflow: hidden;
+	float: left;
+}
+
+#b_wrapper2 {
+	padding: 6px;
+	overflow: hidden;
+	float: left;
+}
+
+#b_wrapper3 {
+	padding: 6px;
+	overflow: hidden;
+	float: left;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* IE/Edge */
+  user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+#button {
+	margin-top: 6px;
+	padding: 6px;
+	text-align: center;
+	font-size: auto;
+	border-width: 6px;
+	border-radius: 6px;
+	border-style: outset;
+	border-color: teal;
+	background-color: teal;
+	color: white;
+	font-family: sans-serif;
+}
+
+#button:hover {
+	cursor: pointer;
+}
+
+#button:active {
+	border-style: inset !important;
+}
+</style>
+
+<form id="a_form">
+	<div id="a_wrapper0">
+	<div id="a_wrapper1">
+		<!-- Personality -->
+		<b>Personality</b>&nbsp;&nbsp;&nbsp;&nbsp;<label for="a_p_p">   Importance: </label><input class="a_importance" id="a_p_p" type="number" value="0" min="0" max="10"><br>
+		<label for="a_p_mbti1">Introverted / Extraverted: </label>
+		<input class="a_personality" id="a_p_mbti1" type="number" min="-15" max="15" value="0"><br>
+		<label for="a_p_mbti2">Intuitive / Sensing: </label>
+		<input class="a_personality" id="a_p_mbti2" type="number" min="-15" max="15" value="0"><br>
+		<label for="a_p_mbti3">Thinking / Feeling: </label>
+		<input class="a_personality" id="a_p_mbti3" type="number" min="-15" max="15" value="0"><br>
+		<label for="a_p_mbti4">Perceptive / Judging: </label>
+		<input class="a_personality" id="a_p_mbti4" type="number" min="-15" max="15" value="0"><br>
+		<label for="a_p_humor">Humor: Dark / Light : </label>
+		<input class="a_personality" id="a_p_humor" type="number" min="-15" max="15" value="0"><br>
+		<label for="a_p_sexdrive">Sex Drive: Low / High</label>
+		<input class="a_personality" id="a_p_sexdrive" type="number" min="-15" max="15" value="0"><br>
+		<label for="a_p_subdom">Sex Personality: Submissive / Dominant: </label>
+		<input class="a_personality" id="a_p_subdom" type="number" min="-15" max="15" value="0"><br>
+		<label for="a_p_conlib">Politics: Conservative / Liberal: </label>
+		<input class="a_personality" id="a_p_conlib" type="number" min="-15" max="15" value="0"><br>
+	</div>
+	<div id="a_wrapper2">
+		<!-- Interests -->
+		<b>Interests</b>&nbsp;&nbsp;&nbsp;&nbsp;<label for="a_i_p">   Importance: </label><input class="a_importance" id="a_i_p" type="number" value="0" min="0" max="10"><br>
+	<div>
+		<input class="a_interests" id="a_i_movies" type="checkbox" value="false">
+		<label for="a_i_movies"> Movies  </label><br>
+		<input class="a_interests" id="a_i_tvshows" type="checkbox" value="false">
+		<label for="a_i_tvshows"> TV Shows  </label><br>
+		<input class="a_interests" id="a_i_music" type="checkbox" value="false">
+		<label for="a_i_music"> Music  </label><br>
+		<input class="a_interests" id="a_i_games" type="checkbox" value="false">
+		<label for="a_i_games"> Games  </label><br>
+		<input class="a_interests" id="a_i_books" type="checkbox" value="false">
+		<label for="a_i_books"> Books  </label><br>
+		<input class="a_interests" id="a_i_comics" type="checkbox" value="false">
+		<label for="a_i_comics"> Comics  </label><br>
+		<input class="a_interests" id="a_i_cultures" type="checkbox" value="false">
+		<label for="a_i_cultures"> Cultures  </label><br>
+		<input class="a_interests" id="a_i_adventure" type="checkbox" value="false">
+		<label for="a_i_adventure"> Adventure  </label><br>
+		<input class="a_interests" id="a_i_tradition" type="checkbox" value="false">
+		<label for="a_i_tradition"> Tradition  </label><br>
+		<input class="a_interests" id="a_i_art" type="checkbox" value="false">
+		<label for="a_i_art"> Art  </label><br>
+		<input class="a_interests" id="a_i_craft" type="checkbox" value="false">
+		<label for="a_i_craft"> Craft  </label><br>
+		<input class="a_interests" id="a_i_computers" type="checkbox" value="false">
+		<label for="a_i_computers"> Computers  </label><br>
+	</div>
+	<div>
+		<input class="a_interests" id="a_i_education" type="checkbox" value="false">
+		<label for="a_i_education"> Education  </label><br>
+		<input class="a_interests" id="a_i_psychology" type="checkbox" value="false">
+		<label for="a_i_psychology"> Psychology  </label><br>
+		<input class="a_interests" id="a_i_philosophy" type="checkbox" value="false">
+		<label for="a_i_philosophy"> Philosophy  </label><br>
+		<input class="a_interests" id="a_i_fashion" type="checkbox" value="false">
+		<label for="a_i_fashion"> Fashion  </label><br>
+		<input class="a_interests" id="a_i_sports" type="checkbox" value="false">
+		<label for="a_i_sports"> Sports  </label><br>
+		<input class="a_interests" id="a_i_politics" type="checkbox" value="false">
+		<label for="a_i_politics"> Politics  </label><br>
+		<input class="a_interests" id="a_i_science" type="checkbox" value="false">
+		<label for="a_i_science"> Science  </label><br>
+		<input class="a_interests" id="a_i_photography" type="checkbox" value="false">
+		<label for="a_i_photography"> Photography  </label><br>
+		<input class="a_interests" id="a_i_fitness" type="checkbox" value="false">
+		<label for="a_i_fitness"> Fitness  </label><br>
+		<input class="a_interests" id="a_i_nature" type="checkbox" value="false">
+		<label for="a_i_nature"> Nature  </label><br>
+		<input class="a_interests" id="a_i_charity" type="checkbox" value="false">
+		<label for="a_i_charity"> Charity  </label><br>
+		<input class="a_interests" id="a_i_cooking" type="checkbox" value="false">
+		<label for="a_i_cooking"> Cooking  </label><br>
+	</div>
+	</div>
+	<div id="a_wrapper3">
+		<label for="a_iq">IQ: </label>
+		<input class="a_iq" id="a_iq" type="number" min="70" max="170" value="100">
+		<label for="a_iq_p">   Importance: </label><input class="a_importance" id="a_iq_p" type="number" value="0" min="0" max="10"><br>
+		
+		<br>
+		<!-- Lifestyle -->
+		<b>Lifestyle</b><br>
+		<label for="a_l_religion"> Religion: </label>
+		<select class="a_lifestye" id="a_l_religion">
+			<option>None</option>
+			<option>Christian</option>
+			<option>Muslim</option>
+			<option>Jewish</option>
+			<option>Hindu</option>
+			<option>Buddhist</option>
+			<option>Other</option>
+		</select>
+		<label for="a_l_religion_p">   Importance: </label><input class="a_importance" id="a_l_religion_p" type="number" value="0" min="0" max="10"><br>
+		<label for="a_l_veggie">Vegan / Vegetarian </label><input class="a_lifestye" id="a_l_veggie" type="checkbox" value="false">
+		<label for="a_l_veggie_p">   Importance: </label><input class="a_importance" id="a_l_veggie_p" type="number" value="0" min="0" max="10"><br>
+		<label for="a_l_smoke">Smoker </label><input class="a_lifestye" id="a_l_smoke" type="checkbox" value="false">
+		<label for="a_l_smoke_p">   Importance: </label><input class="a_importance" id="a_l_smoke_p" type="number" value="0" min="0" max="10"><br>
+		
+		<br>
+		<!-- Opinions -->
+		<b>Opinions</b>&nbsp;&nbsp;&nbsp;&nbsp;<label for="a_o_p">   Importance: </label><input class="a_importance" id="a_o_p" type="number" value="0" min="0" max="10"><br>
+		<input class="a_opinions" id="a_o_guncontrol" type="checkbox" value="false">
+		<label for="a_o_guncontrol"> More guns make countries safer.  </label><br>
+		<input class="a_opinions" id="a_o_cannabis" type="checkbox" value="false">
+		<label for="a_o_cannabis"> Cannabis should be decriminalized.  </label><br>
+		<input class="a_opinions" id="a_o_marriageequality" type="checkbox" value="false">
+		<label for="a_o_marriageequality"> Marriage is for everyone, including homosexuals.  </label><br>
+		<input class="a_opinions" id="a_o_polygamy" type="checkbox" value="false">
+		<label for="a_o_polygamy"> Polygamy can be a good thing.  </label><br>
+		<input class="a_opinions" id="a_o_immigration" type="checkbox" value="false">
+		<label for="a_o_immigration"> Illegal immigrants should be considered intruders.  </label><br>
+		<input class="a_opinions" id="a_o_education" type="checkbox" value="false">
+		<label for="a_o_education"> College education should be tuition-free.  </label><br>
+		<input class="a_opinions" id="a_o_environment" type="checkbox" value="false">
+		<label for="a_o_environment"> The environment is in danger and has to be saved.  </label><br>
+		<input class="a_opinions" id="a_o_climate" type="checkbox" value="false">
+		<label for="a_o_climate"> Climate change activists are exaggerating.  </label>
+		
+	</div>
+	</div>
+</form>
+
+
+<form id="b_form">
+	<div id="b_wrapper0">
+	<div id="b_wrapper1">
+		<!-- Personality -->
+		<b>Personality</b>&nbsp;&nbsp;&nbsp;&nbsp;<label for="b_p_p">   Importance: </label><input class="b_importance" id="b_p_p" type="number" value="0" min="0" max="10"><br>
+		<label for="b_p_mbti1">Introverted / Extraverted: </label>
+		<input class="b_personality" id="b_p_mbti1" type="number" min="-15" max="15" value="0"><br>
+		<label for="b_p_mbti2">Intuitive / Sensing: </label>
+		<input class="b_personality" id="b_p_mbti2" type="number" min="-15" max="15" value="0"><br>
+		<label for="b_p_mbti3">Thinking / Feeling: </label>
+		<input class="b_personality" id="b_p_mbti3" type="number" min="-15" max="15" value="0"><br>
+		<label for="b_p_mbti4">Percepting / Judging: </label>
+		<input class="b_personality" id="b_p_mbti4" type="number" min="-15" max="15" value="0"><br>
+		<label for="b_p_subdom">Submissive / Dominant: </label>
+		<input class="b_personality" id="b_p_subdom" type="number" min="-15" max="15" value="0"><br>
+		<label for="b_p_neuroticism">Neuroticism: </label>
+		<input class="b_personality" id="b_p_neuroticism" type="number" min="-15" max="15" value="0"><br>
+		<label for="b_p_conformity">Conformity: </label>
+		<input class="b_personality" id="b_p_conformity" type="number" min="-15" max="15" value="0"><br>
+		<label for="b_p_aggressiveness">Aggressiveness: </label>
+		<input class="b_personality" id="b_p_aggressiveness" type="number" min="-15" max="15" value="0"><br>
+		<label for="b_p_humor">Humor (Dark/Friendly): </label>
+		<input class="b_personality" id="b_p_humor" type="number" min="-15" max="15" value="0"><br>
+		<label for="b_p_sexdrive">Sex Drive: </label>
+		<input class="b_personality" id="b_p_sexdrive" type="number" min="-15" max="15" value="0"><br>
+		<label for="b_p_conlib">Conservative / Liberal: </label>
+		<input class="b_personality" id="b_p_conlib" type="number" min="-15" max="15" value="0"><br>
+	</div>
+	<div id="b_wrapper2">
+		<!-- Interests -->
+		<b>Interests</b>&nbsp;&nbsp;&nbsp;&nbsp;<label for="b_i_p">   Importance: </label><input class="b_importance" id="b_i_p" type="number" value="0" min="0" max="10"><br>
+		<input class="b_interests" id="b_i_movies" type="checkbox" value="false">
+		<label for="b_i_movies"> Movies  </label><br>
+		<input class="b_interests" id="b_i_tvshows" type="checkbox" value="false">
+		<label for="b_i_tvshows"> TV Shows  </label><br>
+		<input class="b_interests" id="b_i_music" type="checkbox" value="false">
+		<label for="b_i_music"> Music  </label><br>
+		<input class="b_interests" id="b_i_games" type="checkbox" value="false">
+		<label for="b_i_games"> Games  </label><br>
+		<input class="b_interests" id="b_i_books" type="checkbox" value="false">
+		<label for="b_i_books"> Books  </label><br>
+		<input class="b_interests" id="b_i_comics" type="checkbox" value="false">
+		<label for="b_i_comics"> Comics  </label><br>
+		<input class="b_interests" id="b_i_cultures" type="checkbox" value="false">
+		<label for="b_i_cultures"> Cultures  </label><br>
+		<input class="b_interests" id="b_i_adventure" type="checkbox" value="false">
+		<label for="b_i_adventure"> Adventure  </label><br>
+		<input class="b_interests" id="b_i_tradition" type="checkbox" value="false">
+		<label for="b_i_tradition"> Tradition  </label><br>
+		<input class="b_interests" id="b_i_art" type="checkbox" value="false">
+		<label for="b_i_art"> Art  </label><br>
+		<input class="b_interests" id="b_i_craft" type="checkbox" value="false">
+		<label for="b_i_craft"> Craft  </label><br>
+		<input class="b_interests" id="b_i_computers" type="checkbox" value="false">
+		<label for="b_i_computers"> Computers  </label><br>
+		<input class="b_interests" id="b_i_education" type="checkbox" value="false">
+		<label for="b_i_education"> Education  </label><br>
+		<input class="b_interests" id="b_i_psychology" type="checkbox" value="false">
+		<label for="b_i_psychology"> Psychology  </label><br>
+		<input class="b_interests" id="b_i_philosophy" type="checkbox" value="false">
+		<label for="b_i_philosophy"> Philosophy  </label><br>
+		<input class="b_interests" id="b_i_fashion" type="checkbox" value="false">
+		<label for="b_i_fashion"> Fashion  </label><br>
+		<input class="b_interests" id="b_i_sports" type="checkbox" value="false">
+		<label for="b_i_sports"> Sports  </label><br>
+		<input class="b_interests" id="b_i_politics" type="checkbox" value="false">
+		<label for="b_i_politics"> Politics  </label><br>
+		<input class="b_interests" id="b_i_science" type="checkbox" value="false">
+		<label for="b_i_science"> Science  </label><br>
+		<input class="b_interests" id="b_i_photography" type="checkbox" value="false">
+		<label for="b_i_photography"> Photography  </label><br>
+		<input class="b_interests" id="b_i_fitness" type="checkbox" value="false">
+		<label for="b_i_fitness"> Fitness  </label><br>
+		<input class="b_interests" id="b_i_nature" type="checkbox" value="false">
+		<label for="b_i_nature"> Nature  </label><br>
+		<input class="b_interests" id="b_i_charity" type="checkbox" value="false">
+		<label for="b_i_charity"> Charity  </label><br>
+		<input class="b_interests" id="b_i_cooking" type="checkbox" value="false">
+		<label for="b_i_cooking"> Cooking  </label><br>
+	</div>
+	<div id="b_wrapper3">
+		<label for="b_iq">IQ: </label>
+		<input class="iq" id="b_iq" type="number" min="70" max="170" value="100">
+		<label for="b_iq_p">   Importance: </label><input class="b_importance" id="b_iq_p" type="number" value="0" min="0" max="10"><br>
+		
+		<br>
+		<!-- Lifestyle -->
+		<b>Lifestyle</b><br>
+		<label for="b_l_religion"> Religion: </label>
+		<select class="b_lifestyle" id="b_l_religion">
+			<option>None</option>
+			<option>Christian</option>
+			<option>Muslim</option>
+			<option>Jewish</option>
+			<option>Hindu</option>
+			<option>Buddhist</option>
+			<option>Other</option>
+		</select>
+		<label for="b_l_religion_p">   Importance: </label><input class="b_importance" id="b_l_religion_p" type="number" value="0" min="0" max="10"><br>
+		<label for="b_l_veggie">Vegan / Vegetarian </label><input class="b_lifestyle" id="b_l_veggie" type="checkbox" value="false">
+		<label for="b_l_veggie_p">   Importance: </label><input class="b_importance" id="b_l_veggie_p" type="number" value="0" min="0" max="10"><br>
+		<label for="b_l_smoke">Smoker </label><input class="b_lifestyle" id="b_l_smoke" type="checkbox" value="false">
+		<label for="b_l_smoke_p">   Importance: </label><input class="b_importance" id="b_l_smoke_p" type="number" value="0" min="0" max="10"><br>
+		
+		<br>
+		<!-- Opinions -->
+		<b>Opinions</b>&nbsp;&nbsp;&nbsp;&nbsp;<label for="b_o_p">   Importance: </label><input class="b_importance" id="b_o_p" type="number" value="0" min="0" max="10"><br>
+		<input class="b_opinions" id="b_o_guncontrol" type="checkbox" value="false">
+		<label for="b_o_guncontrol"> More guns make countries safer.  </label><br>
+		<input class="b_opinions" id="b_o_cannabis" type="checkbox" value="false">
+		<label for="b_o_cannabis"> Cannabis should be decriminalized.  </label><br>
+		<input class="b_opinions" id="b_o_marriageequality" type="checkbox" value="false">
+		<label for="b_o_marriageequality"> Marriage is for everyone, including homosexuals.  </label><br>
+		<input class="b_opinions" id="b_o_polygamy" type="checkbox" value="false">
+		<label for="b_o_polygamy"> Polygamy can be a good thing.  </label><br>
+		<input class="b_opinions" id="b_o_immigration" type="checkbox" value="false">
+		<label for="b_o_immigration"> Illegal immigrants should be considered intruders.  </label><br>
+		<input class="b_opinions" id="b_o_education" type="checkbox" value="false">
+		<label for="b_o_education"> College education should be tuition-free.  </label><br>
+		<input class="b_opinions" id="b_o_environment" type="checkbox" value="false">
+		<label for="b_o_environment"> The environment is in danger and has to be saved.  </label><br>
+		<input class="b_opinions" id="b_o_climate" type="checkbox" value="false">
+		<label for="b_o_climate"> Climate change activists are exaggerating.  </label>
+		
+	</div>
+	</div>
+</form>
+
+<div class="noselect" id="button">COMPARE</div>
+
+<script>
+var a; // current comparison parameter of object a
+var b; // current comparison parameter of object b
+var pa;
+var pb;
+var r; // rating of compared values
+var x;
+var p; // priority aka importance
+var arr = Array(1); // array of values to be summed up
+arr[0] = 0;
+var base = 14000; // base rating (normative)
+var rating;
+
+var process = function(){
+	rating = base;
+	try {
+		compare();
+	} finally {
+		try {
+			addUp();
+		} finally {
+			try {
+				adjust();
+			} finally {
+				try {
+					finalize();
+				} finally {
+					alert("rating: "+rating);
+					}
+			}
+		}
+	}
+};
+
+var main = function(){
+	$("#button").click(process);
+};
+
+$(document).ready(main);
+
+function addUp() {
+	for(i = 0; i < arr.length; i++){
+		rating += arr[i];
+	}
+}
+
+function adjust() {
+	iq_a = $("#a_iq").val();
+	iq_b = $("#b_iq").val();
+	iq_p = $("#a_iq_p").val()/2 + $("#b_iq_p").val()/2;
+	x = ((100 - Math.abs(iq_a - iq_b)) + 200 + (100-10*iq_p)) / 300;
+	if(x > 1){
+		x = 1;
+	}
+	rating *= x;
+	rel_a = $("#a_l_religion").val();
+	rel_b = $("#b_l_religion").val();
+	rel_p = $("#a_l_religion_p").val()/2 + $("#b_l_religion_p").val()/2;
+	if(rel_a != rel_b){
+		x = (11 - rel_p)/11;
+	} else {
+		x = 1;
+	}
+	rating *= x;
+}
+
+function finalize() {
+	x = Math.floor(rating);
+	rating = x;
+	arr = Array(0);
+}
+
+function compare() {
+	// set personality priority
+	pa = $("#a_p_p").val();
+	pb = $("#b_p_p").val();
+	p = pa/2 + pb/2;
+	// compare mbti1
+	a = $("#a_p_mbti1").val();
+	b = $("#b_p_mbti1").val();
+	r = ((Math.abs(a) + Math.abs(b)) / 2 - Math.abs(a - b)) * 5 * p;
+	arr.push(r);
+	// compare mbti2
+	a = $("#a_p_mbti2").val();
+	b = $("#b_p_mbti2").val();
+	r = ((Math.abs(a) + Math.abs(b)) / 2 - Math.abs(a - b)) * 5 * p;
+	arr.push(r);
+	// compare mbti3
+	a = $("#a_p_mbti3").val();
+	b = $("#b_p_mbti3").val();
+	r = ((Math.abs(a) + Math.abs(b)) / 2 - Math.abs(a - b)) * 5 * p;
+	arr.push(r);
+	// compare mbti4
+	a = $("#a_p_mbti4").val();
+	b = $("#b_p_mbti4").val();
+	r = ((Math.abs(a) + Math.abs(b)) / 2 - Math.abs(a - b)) * 5 * p;
+	arr.push(r);
+	// compare subdom
+	a = parseInt($("#a_p_subdom").val());
+	b = parseInt($("#b_p_subdom").val());
+	r = (-(Math.abs(a + b) / (Math.abs(a - b) + 1))) * 5 * p;
+	arr.push(r);
+	// compare neuroticism
+	a = $("#a_p_neuroticism").val();
+	b = $("#b_p_neuroticism").val();
+	r = ((Math.abs(a) + Math.abs(b)) / 2 - Math.abs(a - b)) * 5 * p;
+	arr.push(r);
+	// compare conformity
+	a = $("#a_p_conformity").val();
+	b = $("#b_p_conformity").val();
+	r = ((Math.abs(a) + Math.abs(b)) / 2 - Math.abs(a - b)) * 5 * p;
+	arr.push(r);
+	// compare aggressiveness
+	a = $("#a_p_aggressiveness").val();
+	b = $("#b_p_aggressiveness").val();
+	r = ((Math.abs(a) + Math.abs(b)) / 2 - Math.abs(a - b)) * 5 * p;
+	arr.push(r);
+	// compare humor
+	a = $("#a_p_humor").val();
+	b = $("#b_p_humor").val();
+	r = ((Math.abs(a) + Math.abs(b)) / 2 - Math.abs(a - b)) * 5 * p;
+	arr.push(r);
+	// compare sexdrive
+	a = $("#a_p_sexdrive").val();
+	b = $("#b_p_sexdrive").val();
+	r = ((Math.abs(a) + Math.abs(b)) / 2 - Math.abs(a - b)) * 5 * p;
+	arr.push(r);
+	// compare conlib
+	a = $("#a_p_conlib").val();
+	b = $("#b_p_conlib").val();
+	r = ((Math.abs(a) + Math.abs(b)) / 2 - Math.abs(a - b)) * 5 * p;
+	arr.push(r);
+	// set interests priority
+	pa = $("#a_i_p").val();
+	pb = $("#b_i_p").val();
+	p = pa/2 + pb/2;
+	// compare interests
+	a = $("#a_i_movies").val();
+	b = $("#b_i_movies").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_tvshows").val();
+	b = $("#b_i_tvshows").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_music").val();
+	b = $("#b_i_music").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_games").val();
+	b = $("#b_i_games").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_books").val();
+	b = $("#b_i_books").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_comics").val();
+	b = $("#b_i_comics").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_culture").val();
+	b = $("#b_i_culture").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_adventure").val();
+	b = $("#b_i_adventure").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_tradition").val();
+	b = $("#b_i_tradition").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_art").val();
+	b = $("#b_i_art").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_craft").val();
+	b = $("#b_i_craft").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_computers").val();
+	b = $("#b_i_computers").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_education").val();
+	b = $("#b_i_education").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_psychology").val();
+	b = $("#b_i_psychology").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_philosophy").val();
+	b = $("#b_i_philosophy").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_fashion").val();
+	b = $("#b_i_fashion").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_sports").val();
+	b = $("#b_i_sports").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_politics").val();
+	b = $("#b_i_politics").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_science").val();
+	b = $("#b_i_science").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_photography").val();
+	b = $("#b_i_photography").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_fitness").val();
+	b = $("#b_i_fitness").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_nature").val();
+	b = $("#b_i_nature").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_charity").val();
+	b = $("#b_i_charity").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_i_cooking").val();
+	b = $("#b_i_cooking").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	// set intelligence priority
+	pa = $("#a_iq_p").val();
+	pb = $("#b_iq_p").val();
+	p = pa/2 + pb/2;
+	// compare intelligence
+	a = $("#a_iq").val();
+	b = $("#b_iq").val();
+	r = -(Math.abs(a - b)) * 5 * p;
+	arr.push(r);
+	// set religion priority
+	pa = $("#a_l_religion_p").val();
+	pb = $("#b_l_religion_p").val();
+	p = pa/2 + pb/2;
+	// compare religion
+	a = $("#a_l_religion").val();
+	b = $("#b_l_religion").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	// set veggie priority
+	pa = $("#a_l_veggie_p").val();
+	pb = $("#b_l_veggie_p").val();
+	p = pa/2 + pb/2;
+	// compare veggie
+	a = $("#a_l_veggie").val();
+	b = $("#b_l_veggie").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	// set smoke priority
+	pa = $("#a_l_smoke_p").val();
+	pb = $("#b_l_smoke_p").val();
+	p = pa/2 + pb/2;
+	// compare smoke
+	a = $("#a_l_smoke").val();
+	b = $("#b_l_smoke").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	// set opinion priority
+	pa = $("#a_o_p").val();
+	pb = $("#b_o_p").val();
+	p = pa/2 + pb/2;
+	// compare opinions
+	a = $("#a_o_guncontrol").val();
+	b = $("#b_o_guncontrol").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_o_cannabis").val();
+	b = $("#b_o_cannabis").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_o_marriageequality").val();
+	b = $("#b_o_marriageequality").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_o_polygamy").val();
+	b = $("#b_o_polygamy").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_o_immigration").val();
+	b = $("#b_o_immigration").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_o_education").val();
+	b = $("#b_o_education").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_o_environment").val();
+	b = $("#b_o_environment").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+	a = $("#a_o_climate").val();
+	b = $("#b_o_climate").val();
+	if(a == b){
+		r = p;	
+	} else {
+		r = -p;
+	}
+	arr.push(r);
+}
+</script>
+
+
+</body></html>
